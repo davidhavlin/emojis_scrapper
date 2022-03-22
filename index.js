@@ -20,7 +20,6 @@ const getEmojis = async () => {
     const meaning = col_2 && col_2.textContent;
     const unicode = col_3 && col_3.textContent;
 
-    console.log("", { emoji, meaning, unicode });
     const isCategoryRow = emoji && !meaning && !unicode;
 
     if (isCategoryRow && !result[emoji]) {
@@ -31,7 +30,7 @@ const getEmojis = async () => {
       result[category].push({ emoji, meaning, unicode });
     }
   });
-  console.log("", { result });
+  fs.writeFileSync("emojis.json", JSON.stringify(result, null, 2), "utf-8");
 };
 
 getEmojis();
