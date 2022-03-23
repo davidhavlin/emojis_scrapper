@@ -24,10 +24,10 @@ const getEmojis = async () => {
 
     if (isCategoryRow && !result[emoji]) {
       category = emoji;
-      result[category] = [];
+      result[category] = {};
     }
     if (emoji && meaning && unicode && result[category]) {
-      result[category].push({ emoji, meaning, unicode });
+      result[category][meaning] = emoji;
     }
   });
   fs.writeFileSync("emojis.json", JSON.stringify(result, null, 2), "utf-8");
